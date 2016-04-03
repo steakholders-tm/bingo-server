@@ -45,12 +45,16 @@ class GameSerializer(ModelSerializer):
 
 
 class TileSerializer(ModelSerializer):
+    primary_categories = PrimaryCategorySerializer(many=True, read_only=True)
+
     class Meta(object):
         model = Tile
-        fields = ('name', 'games', 'place', 'primary_categories', 'secondary_categories')
+        fields = ('name', 'primary_categories', 'secondary_categories')
 
 
 class WinnerSerializer(ModelSerializer):
+    game = GameSerializer(read_only=True)
+
     class Meta(object):
         model = Winner
-        fields = ('name', 'game', 'time')
+        fields = ('name', 'time', 'game')

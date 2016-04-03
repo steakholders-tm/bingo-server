@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from ..models import Game, PrimaryCategory, SecondaryCategory, GameType
+from ..models import Game, GameType, PrimaryCategory, SecondaryCategory, Tile, Winner
 
 
 class SecondaryCategorySerializer(ModelSerializer):
@@ -42,3 +42,15 @@ class GameSerializer(ModelSerializer):
         fields = (
             'name', 'date', 'time', 'duration', 'game_type', 'place', 'primary_category', 'secondary_category'
         )
+
+
+class TileSerializer(ModelSerializer):
+    class Meta(object):
+        model = Tile
+        fields = ('name', 'games', 'place', 'primary_categories', 'secondary_categories')
+
+
+class WinnerSerializer(ModelSerializer):
+    class Meta(object):
+        model = Winner
+        fields = ('name', 'game', 'time')

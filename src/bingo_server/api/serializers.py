@@ -32,10 +32,10 @@ class PlaceSerializer(ModelSerializer):
 
 
 class GameSerializer(ModelSerializer):
-    primary_category = PrimaryCategorySerializer()
-    secondary_category = SecondaryCategorySerializer()
-    place = PrimaryCategorySerializer()
-    game_type = GameTypeSerializer()
+    primary_category = PrimaryCategorySerializer(read_only=True)
+    secondary_category = SecondaryCategorySerializer(read_only=True)
+    place = PrimaryCategorySerializer(read_only=True)
+    game_type = GameTypeSerializer(read_only=True)
 
     class Meta(object):
         model = Game

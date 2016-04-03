@@ -36,7 +36,7 @@ class SecondaryCategory(Model):
 
 
 class Tile(Model):
-    text = CharField(max_length=256)
+    name = CharField(max_length=256)
     games = ManyToManyField(blank=True, to="Game", related_name="tiles")
     place = ManyToManyField(blank=True, to="Place", related_name="tiles")
     primary_categories = ManyToManyField(blank=True, to="PrimaryCategory", related_name="tiles")

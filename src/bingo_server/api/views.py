@@ -1,8 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny
 
-from ..models import Game, PrimaryCategory, SecondaryCategory, Place
-from .serializers import GameSerializer, PrimaryCategorySerializer, SecondaryCategorySerializer, PlaceSerializer
+from ..models import Game, PrimaryCategory, SecondaryCategory, Place, GameType
+from .serializers import GameSerializer, PrimaryCategorySerializer, SecondaryCategorySerializer, PlaceSerializer, GameTypeSerializer
 
 
 class GameViewSet(ModelViewSet):
@@ -26,4 +26,10 @@ class SecondaryCategoryViewSet(ModelViewSet):
 class PlaceViewSet(ModelViewSet):
     serializer_class = PlaceSerializer
     queryset = Place.objects.all()
+    permission_classes = (AllowAny,)
+
+
+class GameTypeViewSet(ModelViewSet):
+    serializer_class = GameTypeSerializer
+    queryset = GameType.objects.all()
     permission_classes = (AllowAny,)

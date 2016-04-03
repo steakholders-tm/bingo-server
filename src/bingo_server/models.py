@@ -9,9 +9,9 @@ CHAR_FIELD_DESCRIPTION = CharField(blank=True, max_length=512)
 # Create your models here.
 class Game(Model):
     name = CHAR_FIELD
-    date = DateField
-    time = TimeField
-    duration = IntegerField
+    date = DateField()
+    time = TimeField()
+    duration = IntegerField()
     game_type = ForeignKey(to="GameType", related_name="games")
     place = ForeignKey(to="Place", related_name="games")
     primary_category = ForeignKey(to="PrimaryCategory", related_name="games")
@@ -49,7 +49,7 @@ class Tile(Model):
 class Winner(Model):
     name = CHAR_FIELD_NAME
     game = ForeignKey(to="Game", related_name="winners")
-    time = DateTimeField
+    time = DateTimeField()
 
 
 

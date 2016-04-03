@@ -7,6 +7,7 @@ router = SimpleRouter()
 
 router.register('games', bingo_server_views.GameViewSet)
 router.register('primary-categories', bingo_server_views.PrimaryCategoryViewSet)
-router.register('secondary-categories', bingo_server_views.SecodaryCategoryViewSet)
+router.register('secondary-categories', bingo_server_views.SecondaryCategoryViewSet)
+router.register('place', bingo_server_views.PlaceViewSet)
 
 urlpatterns = router.urls

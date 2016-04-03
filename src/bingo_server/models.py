@@ -1,14 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from django.db.models import DateField, TimeField, CharField, Model, ManyToManyField, IntegerField, ForeignKey, DateTimeField
-CHAR_FIELD = CharField(max_length=256)
-CHAR_FIELD_NAME = CharField(max_length=256)
-CHAR_FIELD_DESCRIPTION = CharField(blank=True, max_length=512)
 
 
 # Create your models here.
 class Game(Model):
-    name = CHAR_FIELD
+    name = CharField(max_length=256)
     date = DateField()
     time = TimeField()
     duration = IntegerField()
@@ -19,27 +16,27 @@ class Game(Model):
 
 
 class GameType(Model):
-    name = CHAR_FIELD_NAME
-    description = CHAR_FIELD_DESCRIPTION
+    name = CharField(max_length=256)
+    description = CharField(blank=True, max_length=512)
 
 
 class Place(Model):
-    name = CHAR_FIELD_NAME
-    description = CHAR_FIELD_DESCRIPTION
+    name = CharField(max_length=256)
+    description = CharField(blank=True, max_length=512)
 
 
 class PrimaryCategory(Model):
-    name = CHAR_FIELD_NAME
-    description = CHAR_FIELD_DESCRIPTION
+    name = CharField(max_length=256)
+    description = CharField(blank=True, max_length=512)
 
 
 class SecondaryCategory(Model):
-    name = CHAR_FIELD_NAME
-    description = CHAR_FIELD_DESCRIPTION
+    name = CharField(max_length=256)
+    description = CharField(blank=True, max_length=512)
 
 
 class Tile(Model):
-    text = CHAR_FIELD
+    text = CharField(max_length=256)
     games = ManyToManyField(blank=True, to="Game", related_name="tiles")
     place = ManyToManyField(blank=True, to="Place", related_name="tiles")
     primary_categories = ManyToManyField(blank=True, to="PrimaryCategory", related_name="tiles")
@@ -47,7 +44,7 @@ class Tile(Model):
 
 
 class Winner(Model):
-    name = CHAR_FIELD_NAME
+    name = CharField(max_length=256)
     game = ForeignKey(to="Game", related_name="winners")
     time = DateTimeField()
 

@@ -1,6 +1,13 @@
 from rest_framework import serializers
 
-from ..models import Game, PrimaryCategory
+from ..models import Game, PrimaryCategory, SecondaryCategory
+
+
+class SecondaryCategorySerializer(serializers.ModelSerializer):
+
+    class Meta(object):
+        model = SecondaryCategory
+        fields = ('name', 'description')
 
 
 class PrimaryCategorySerializer(serializers.ModelSerializer):
@@ -12,6 +19,7 @@ class PrimaryCategorySerializer(serializers.ModelSerializer):
 
 class GameSerializer(serializers.ModelSerializer):
     primary_category = PrimaryCategorySerializer()
+    secondary_category = SecondaryCategorySerializer()
 
     class Meta(object):
         model = Game

@@ -150,5 +150,5 @@ STATIC_URL = '/static/'
 # Django REST framework
 
 REST_FRAMEWORK = {
-
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
 }

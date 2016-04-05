@@ -1,6 +1,7 @@
 from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 
 from ..models import Game, GameType, Place, PrimaryCategory, SecondaryCategory, Tile, Winner
 from .serializers import GameSerializer, GameTypeSerializer, PlaceSerializer, PrimaryCategorySerializer, \
@@ -11,7 +12,6 @@ class GameViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveMode
     serializer_class = GameSerializer
     queryset = Game.objects.all()
     permission_classes = (AllowAny,)
-
 
 class PrimaryCategoryViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = PrimaryCategorySerializer

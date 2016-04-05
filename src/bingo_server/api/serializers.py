@@ -33,22 +33,35 @@ class PlaceSerializer(ModelSerializer):
         fields = ('id', 'name', 'description')
 
 
+class TileSerializer(ModelSerializer):
+    place = PlaceSerializer(many=True, read_only=True)
+    primary_categories = PrimaryCategorySerializer(many=True, read_only=True)
+    secondary_categories = SecondaryCategorySerializer(many=True, read_only=True)
+
+    class Meta(object):
+        model = Tile
+        fields = ('id', 'name', 'primary_categories', 'secondary_categories', 'place')
+
+
 class GameSerializer(ModelSerializer):
     primary_category = PrimaryKeyRelatedField(queryset=PrimaryCategory.objects.all())
     secondary_category = PrimaryKeyRelatedField(required=False, queryset=SecondaryCategory.objects.all())
     place = PrimaryKeyRelatedField(queryset=Place.objects.all())
     game_type = PrimaryKeyRelatedField(queryset=GameType.objects.all())
+    tiles = TileSerializer(read_only=True, many=True)
 
     class Meta(object):
         model = Game
         fields = (
-            'id', 'name', 'date', 'time', 'duration', 'game_type', 'place', 'primary_category', 'secondary_category'
+            'id', 'name', 'date', 'time', 'duration', 'game_type', 'place', 'primary_category', 'secondary_category', "tiles"
         )
 
     def create(self, validated_data):
 
         ModelClass = self.Meta.model
-   
+
+        tiles = self.get_tiles(validated_data)
+
         try:
             instance = ModelClass.objects.create(**validated_data)
         except TypeError as exc:
@@ -68,14 +81,21 @@ class GameSerializer(ModelSerializer):
             )
             raise TypeError(msg)
 
+        instance.tiles.add(*tiles)
         return instance
 
-class TileSerializer(ModelSerializer):
-    primary_categories = PrimaryCategorySerializer(many=True, read_only=True)
+    def get_tiles(self, validated_data):
+        number_of_tiles = 50
+        tiles = []
+        tiles.extend(validated_data['place'].tiles.all())
+        tiles.extend(validated_data['primary_category'].tiles.all())
+        tiles.extend(validated_data['secondary_category'].tiles.all())
+        if len(tiles) < number_of_tiles:
+            return []
 
-    class Meta(object):
-        model = Tile
-        fields = ('id', 'name', 'primary_categories', 'secondary_categories')
+        import random
+        random.shuffle(tiles)
+        return tiles[:number_of_tiles]
 
 
 class WinnerSerializer(ModelSerializer):

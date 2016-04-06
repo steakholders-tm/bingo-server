@@ -6,3 +6,4 @@ Django==1.9.5
 django-filter==0.13.0         # [r:DRF] Filters for Django REST framework
 markdown==2.6.6               # [r:DRF] Markdown. For HTML rendering of API views
 djangorestframework==3.3.3          # Django REST framework
+django-rest-swagger==0.3.5

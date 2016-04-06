@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'bingo_server',
     # 3rd party apps
     'rest_framework',
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE_CLASSES = [

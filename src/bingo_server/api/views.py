@@ -13,6 +13,7 @@ class GameViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveMode
     queryset = Game.objects.all()
     permission_classes = (AllowAny,)
 
+
 class PrimaryCategoryViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = PrimaryCategorySerializer
     queryset = PrimaryCategory.objects.all()

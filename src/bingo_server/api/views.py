@@ -1,6 +1,7 @@
 from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 
 from ..models import Game, GameType, Place, PrimaryCategory, SecondaryCategory, Tile, Winner
 from .serializers import GameSerializer, GameTypeSerializer, PlaceSerializer, PrimaryCategorySerializer, \

@@ -53,7 +53,6 @@ class TileSerializer(ModelSerializer):
 
 
 class WinnerSerializer(ModelSerializer):
-    game = GameSerializer(read_only=True)
 
     class Meta(object):
         model = Winner

@@ -64,8 +64,7 @@ class GameSerializer(ModelSerializer):
         instance.tiles.add(*tiles)
         return instance
 
-    def get_tiles(self, validated_data):
-        number_of_tiles = 50
+    def get_tiles(self, validated_data, number_of_tiles=25):
         tiles = []
         tiles.extend(validated_data['place'].tiles.all())
         tiles.extend(validated_data['primary_category'].tiles.all())

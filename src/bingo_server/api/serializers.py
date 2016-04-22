@@ -53,7 +53,8 @@ class GameSerializer(ModelSerializer):
     class Meta(object):
         model = Game
         fields = (
-            'id', 'name', 'date', 'time', 'duration', 'game_type', 'place', 'primary_category', 'secondary_category', "tiles"
+            'id', 'name', 'date', 'time', 'duration', 'game_type', 'place', 'primary_category', 'secondary_category',
+            "tiles", 'active', 'winners'
         )
 
     def create(self, validated_data):

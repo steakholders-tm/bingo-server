@@ -45,7 +45,9 @@ class TileSerializer(ModelSerializer):
 
 class GameSerializer(ModelSerializer):
     primary_category = PrimaryKeyRelatedField(queryset=PrimaryCategory.objects.all())
-    secondary_category = PrimaryKeyRelatedField(required=False, queryset=SecondaryCategory.objects.all())
+    secondary_category = PrimaryKeyRelatedField(required=False,
+                                                allow_null=True,
+                                                queryset=SecondaryCategory.objects.all())
     place = PrimaryKeyRelatedField(queryset=Place.objects.all())
     game_type = PrimaryKeyRelatedField(queryset=GameType.objects.all())
     tiles = TileSerializer(read_only=True, many=True)

@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import datetime
-from django.db.models import DateField, TimeField, CharField, Model, ManyToManyField, IntegerField, ForeignKey, DateTimeField
+from django.db.models import DateField, TimeField, CharField, Model, ManyToManyField, IntegerField, ForeignKey, DateTimeField, \
+    BooleanField
 
 
 # Create your models here.
@@ -14,6 +15,7 @@ class Game(Model):
     place = ForeignKey(to="Place", related_name="games")
     primary_category = ForeignKey(to="PrimaryCategory", related_name="games")
     secondary_category = ForeignKey(null=True, blank=True, to="SecondaryCategory", related_name="games")
+    active = BooleanField(default=True)
 
     def __str__(self):
         return '"%s" started on %s' % (self.name, self.datetime.strftime("%Y-%m-%d %H:%M:%S"))

@@ -1,0 +1,1 @@
+default_app_config = 'bingo_server.apps.BingoServerConfig'

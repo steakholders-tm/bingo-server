@@ -82,7 +82,7 @@ class GameSerializer(ModelSerializer):
             return []
 
         import random
-        tiles = random.shuffle(tiles)
+        random.shuffle(tiles)
         return tiles[:number_of_tiles]
 
 

@@ -69,13 +69,13 @@ class GameSerializer(ModelSerializer):
 
     def get_tiles(self, validated_data, number_of_tiles=25):
         tiles = []
-        place = validated_data['place']
+        place = validated_data.get('place', None)
         if place:
             tiles.extend(place.tiles.all())
-        pc = validated_data['primary_category']
+        pc = validated_data.get('primary_category', None)
         if pc:
             tiles.extend(pc.tiles.all())
-        sc = validated_data['secondary_category']
+        sc = validated_data.get('secondary_category', None)
         if sc:
             tiles.extend(sc.tiles.all())
         if len(tiles) < number_of_tiles:

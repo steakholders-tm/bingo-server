@@ -56,7 +56,7 @@ class GameSerializer(ModelSerializer):
         model = Game
         fields = (
             'id', 'name', 'date', 'time', 'duration', 'game_type', 'place', 'primary_category', 'secondary_category',
-            "tiles", 'active', 'winners'
+            "tiles", 'active'
         )
 
     def create(self, validated_data):
@@ -69,14 +69,20 @@ class GameSerializer(ModelSerializer):
 
     def get_tiles(self, validated_data, number_of_tiles=25):
         tiles = []
-        tiles.extend(validated_data['place'].tiles.all())
-        tiles.extend(validated_data['primary_category'].tiles.all())
-        tiles.extend(validated_data['secondary_category'].tiles.all())
+        place = validated_data.get('place', None)
+        if place:
+            tiles.extend(place.tiles.all())
+        pc = validated_data.get('primary_category', None)
+        if pc:
+            tiles.extend(pc.tiles.all())
+        sc = validated_data.get('secondary_category', None)
+        if sc:
+            tiles.extend(sc.tiles.all())
         if len(tiles) < number_of_tiles:
             return []
 
         import random
-        random.shuffle(tiles)
+        tiles = random.shuffle(tiles)
         return tiles[:number_of_tiles]
 
 

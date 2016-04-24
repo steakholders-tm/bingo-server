@@ -10,7 +10,7 @@ from .serializers import GameSerializer, GameTypeSerializer, PlaceSerializer, Pr
 class GameViewSet(GenericViewSet, CreateModelMixin, ListModelMixin, RetrieveModelMixin):
     serializer_class = GameSerializer
     queryset = Game.objects.all()
-    filter_fields = ('winners', 'active')
+    filter_fields = ('active',)
     permission_classes = (AllowAny,)
 
 
